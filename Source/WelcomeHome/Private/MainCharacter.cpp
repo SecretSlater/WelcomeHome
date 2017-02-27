@@ -10,9 +10,9 @@ AMainCharacter::AMainCharacter()
 
 	RightHandMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RightHandMesh"));
 	LeftHandMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LeftHandMesh"));
-
-	RightHandMesh->SetupAttachment(LeftMotionController);
-	LeftHandMesh->SetupAttachment(RightMotionController);
+	
+	RightHandMesh->SetupAttachment(RightMotionController);
+	LeftHandMesh->SetupAttachment(LeftMotionController);
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeVisualAsset(TEXT("StaticMesh'/Game/Shapes/Shape_Cube.Shape_Cube'")); // Finds cube static mesh and sets it to CubeVisualAsset
 
@@ -35,4 +35,34 @@ void AMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AMainCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+{
+	Super::SetupPlayerInputComponent(InputComponent);
+
+	// Respond every frame to the values of our two movement axes, "MoveX" and "MoveY".
+	InputComponent->BindAxis("MoveY", this, &AMainCharacter::MoveY);
+	InputComponent->BindAxis("MoveX", this, &AMainCharacter::MoveX);
+	
+}
+
+void AMainCharacter::MoveY(float AxisValue)
+{
+	if (AxisValue >= -0.2f && AxisValue <= 0.2f) { return; } // "Joystick" deadzone
+
+	FVector ForwardVector = RightHandMesh->GetForwardVector();
+	float ScaleValue = AxisValue * MovementSpeed;
+
+	AddMovementInput(ForwardVector, ScaleValue);
+}
+
+void AMainCharacter::MoveX(float AxisValue)
+{
+	if (AxisValue >= -0.2f && AxisValue <= 0.2f) { return; } // "Joystick" deadzone
+
+	FVector RightVector = RightHandMesh->GetRightVector();
+	float ScaleValue = AxisValue * MovementSpeed;
+
+	AddMovementInput(RightVector, ScaleValue);
 }
