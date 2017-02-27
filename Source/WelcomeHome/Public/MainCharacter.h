@@ -29,6 +29,8 @@ private:
 	void MoveX(float AxisValue);
 	void GrabRightHand();
 	void GrabLeftHand();
+	void DropRightHand();
+	void DropLeftHand();
 
 	UPROPERTY(EditAnywhere)
 	float MovementSpeed = 0.2f;
@@ -38,5 +40,6 @@ private:
 
 	// Parameters for Sphere Trace
 	const TArray <AActor*> ActorsToIgnore; 
-	FHitResult OutHit;
+	FHitResult OutHitRightHand;
+	FHitResult OutHitLeftHand;
 };
