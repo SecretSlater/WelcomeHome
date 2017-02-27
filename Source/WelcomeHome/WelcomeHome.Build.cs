@@ -6,7 +6,7 @@ public class WelcomeHome : ModuleRules
 {
 	public WelcomeHome(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "VRExpansionPlugin" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "VRExpansionPlugin", "HeadMountedDisplay", "SteamVR" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
