@@ -36,7 +36,7 @@ private:
 	float MovementSpeed = 0.2f;
 
 	UPROPERTY(EditAnywhere)
-	float SphereTraceRadius = 15.0f;
+	float SphereTraceRadius = 8.0f;
 
 	// Parameters for Sphere Trace
 	const TArray <AActor*> ActorsToIgnore; 

@@ -15,21 +15,21 @@ AMainCharacter::AMainCharacter()
 	RightHandMesh->SetupAttachment(RightMotionController);
 	LeftHandMesh->SetupAttachment(LeftMotionController);
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeVisualAsset(TEXT("StaticMesh'/Game/Shapes/Shape_Cube.Shape_Cube'")); // Finds cube static mesh and sets it to CubeVisualAsset
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> ViveControllerAsset(TEXT("StaticMesh'/Engine/VREditor/Devices/Vive/VivePreControllerMesh'")); // Finds ViveController static mesh and sets it to ViveControllerAsset
 
-	if (CubeVisualAsset.Succeeded())
+	if (ViveControllerAsset.Succeeded())
 	{
-		RightHandMesh->SetStaticMesh(CubeVisualAsset.Object);
-		RightHandMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
-		RightHandMesh->SetCollisionProfileName(TEXT("OverlapAll")); // We want the controller to have no collision so it is able to intersect with other actors
+		RightHandMesh->SetStaticMesh(ViveControllerAsset.Object);
+		//RightHandMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
+		RightHandMesh->SetCollisionProfileName(TEXT("OverlapAll")); // We want the controller to have no collision so it is able to overlap with other actors
 
-		LeftHandMesh->SetStaticMesh(CubeVisualAsset.Object);
-		LeftHandMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
+		LeftHandMesh->SetStaticMesh(ViveControllerAsset.Object);
+		//LeftHandMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 		LeftHandMesh->SetCollisionProfileName(TEXT("OverlapAll"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Cube asset not found."));
+		UE_LOG(LogTemp, Warning, TEXT("ViveControllerAsset asset not found."));
 	}
 }
 
@@ -95,7 +95,7 @@ void AMainCharacter::GrabRightHand()
 		ETraceTypeQuery::TraceTypeQuery1, // Visible Trace?
 		false,
 		ActorsToIgnore,
-		EDrawDebugTrace::ForOneFrame,
+		EDrawDebugTrace::ForDuration,
 		OutHitRightHand,
 		true
 	);
@@ -137,7 +137,7 @@ void AMainCharacter::GrabLeftHand()
 		ETraceTypeQuery::TraceTypeQuery1, // Visible Trace?
 		false,
 		ActorsToIgnore,
-		EDrawDebugTrace::ForOneFrame,
+		EDrawDebugTrace::Persistent,
 		OutHitLeftHand,
 		true
 	);
@@ -191,4 +191,4 @@ void AMainCharacter::DropLeftHand()
 		);
 	}
 
-}
+}	
