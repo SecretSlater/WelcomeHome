@@ -52,7 +52,6 @@ void AMainCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompo
 	InputComponent->BindAction("GrabLeftHand", IE_Pressed, this, &AMainCharacter::GrabLeftHand);
 	InputComponent->BindAction("GrabRightHand", IE_Released, this, &AMainCharacter::DropRightHand);
 	InputComponent->BindAction("GrabLeftHand", IE_Released, this, &AMainCharacter::DropLeftHand);
-	
 }
 
 void AMainCharacter::MoveY(float AxisValue)
@@ -63,7 +62,6 @@ void AMainCharacter::MoveY(float AxisValue)
 	float ScaleValue = AxisValue * MovementSpeed;
 
 	AddMovementInput(ForwardVector, ScaleValue);
-
 }
 
 void AMainCharacter::MoveX(float AxisValue)
@@ -74,7 +72,6 @@ void AMainCharacter::MoveX(float AxisValue)
 	float ScaleValue = AxisValue * MovementSpeed;
 
 	AddMovementInput(RightVector, ScaleValue);
-
 }
 
 void AMainCharacter::GrabRightHand()
@@ -95,7 +92,7 @@ void AMainCharacter::GrabRightHand()
 		ETraceTypeQuery::TraceTypeQuery1, // Visible Trace?
 		false,
 		ActorsToIgnore,
-		EDrawDebugTrace::ForDuration,
+		EDrawDebugTrace::ForOneFrame,
 		OutHitRightHand,
 		true
 	);
@@ -116,7 +113,6 @@ void AMainCharacter::GrabRightHand()
 			200.0f // Default grip dampening
 		);
 	}
-
 }
 
 void AMainCharacter::GrabLeftHand()
@@ -137,7 +133,7 @@ void AMainCharacter::GrabLeftHand()
 		ETraceTypeQuery::TraceTypeQuery1, // Visible Trace?
 		false,
 		ActorsToIgnore,
-		EDrawDebugTrace::Persistent,
+		EDrawDebugTrace::ForOneFrame,
 		OutHitLeftHand,
 		true
 	);
@@ -158,7 +154,6 @@ void AMainCharacter::GrabLeftHand()
 			200.0f // Default grip dampening
 		);
 	}
-
 }
 
 void AMainCharacter::DropRightHand()
@@ -174,7 +169,6 @@ void AMainCharacter::DropRightHand()
 			FVector(0, 0, 0)
 		);
 	}
-
 }
 
 void AMainCharacter::DropLeftHand()
@@ -190,5 +184,4 @@ void AMainCharacter::DropLeftHand()
 			FVector(0, 0, 0)
 		);
 	}
-
 }	

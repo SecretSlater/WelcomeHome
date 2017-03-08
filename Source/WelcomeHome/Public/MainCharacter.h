@@ -42,4 +42,5 @@ private:
 	const TArray <AActor*> ActorsToIgnore; 
 	FHitResult OutHitRightHand;
 	FHitResult OutHitLeftHand;
+
 };
