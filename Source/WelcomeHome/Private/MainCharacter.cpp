@@ -20,11 +20,9 @@ AMainCharacter::AMainCharacter()
 	if (ViveControllerAsset.Succeeded())
 	{
 		RightHandMesh->SetStaticMesh(ViveControllerAsset.Object);
-		//RightHandMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 		RightHandMesh->SetCollisionProfileName(TEXT("OverlapAll")); // We want the controller to have no collision so it is able to overlap with other actors
 
 		LeftHandMesh->SetStaticMesh(ViveControllerAsset.Object);
-		//LeftHandMesh->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 		LeftHandMesh->SetCollisionProfileName(TEXT("OverlapAll"));
 	}
 	else

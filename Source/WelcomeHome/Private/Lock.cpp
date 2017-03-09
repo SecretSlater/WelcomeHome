@@ -54,7 +54,6 @@ bool ALock::SetLockColorStrings()
 	{
 		DoorName = FString(TEXT("BlueDoor"));
 		KeyName = FString(TEXT("BlueKey"));
-		UE_LOG(LogTemp, Warning, TEXT("BlueSet"));
 		return true;
 	}
 	else if (LockColor == EColorEnum::CE_White)
